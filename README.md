@@ -1,2 +1,1 @@
-# Jquery
- 
+Fonctions de base de Jquery

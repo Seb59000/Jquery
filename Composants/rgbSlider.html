@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="EN" dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/xml; charset=utf-8" />
+  <link rel = "stylesheet"
+        type = "text/css"
+        href = "jquery-ui-1.7.2.custom.css" />
+        
+  <style type = "text/css">
+    #redSlider, #greenSlider, #blueSlider {
+      width: 400px;
+      margin-top: 1em;
+    }
+    
+    #swatch {
+      height: 400px;
+      width: 400px;
+      background-color: #000000;
+    }
+  </style>
+  <script type = "text/javascript"
+          src = "jquery-1.3.2.min.js"></script>
+  <script type = "text/javascript"
+          src = "jquery-ui-1.7.2.custom.min.js"></script>
+  <script type = "text/javascript">
+
+    var r;
+    var g;
+    var b;
+    
+    $(init);
+    
+    function init(){
+      r = $("#redSlider").slider({
+        min: 0,
+        max: 255,
+        slide: changeColor})
+        .css("border", "1px solid red");
+      g = $("#greenSlider").slider({
+        min: 0,
+        max: 255,
+        slide: changeColor})
+        .css("border", "1px solid green");
+      b = $("#blueSlider").slider({
+        min: 0,
+        max: 255,
+        slide: changeColor})
+        .css("border", "1px solid blue");
+    } // end init
+    
+    function changeColor(event, ui){
+      
+      var rValue = $("#redSlider").slider("value");
+      var gValue = $("#greenSlider").slider("value");
+      var bValue = $("#blueSlider").slider("value");
+      var bgColor = "rgb(" + rValue + ", " + gValue + ", " + bValue + ")";
+      
+      rHex = rValue.toString(16);
+      if (rHex.length < 2){
+        rHex = "0" + rHex;
+      }
+      gHex = gValue.toString(16);
+      bHex = bValue.toString(16);
+      hexColor = "#" + rHex +  gHex + bHex;
+      $("#output").html(bgColor + ", " + hexColor);
+      $("#swatch").css("backgroundColor", bgColor);
+    } 
+    
+  </script>
+  
+  <title>rgbSlider.html</title>
+</head>
+<body>
+  <h1>RGB demo with sliders</h1>
+  <div id = "redSlider"></div>
+  <div id = "greenSlider"></div>
+  <div id = "blueSlider"></div>
+  <div id = "output"></div>
+  <div id = "swatch"></div>
+  
+  
+
+</body>
+</html>
+
+  

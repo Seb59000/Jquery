@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="EN" dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/xml; charset=iso-8859-1" />
+
+  <style type = "text/css">
+  #content {
+    width: 300px;
+    background-color: yellow;
+    left: 300px;
+    top: 100px;
+    padding-left: .5em;
+    border: 0px none black;
+  }
+  
+  div {
+    border: 2px solid red;
+    padding: 3px;
+  }
+  </style>
+  
+  <script type = "text/javascript"
+          src = "jquery-1.3.2.min.js"></script>
+          
+  <script type = "text/javascript">
+    //<![CDATA[
+    $(init);
+    
+    function init(){
+      $("#reset").click(reset);
+      $("#addText").click(addText);
+      $("#wrap").click(wrap);
+      $("#clone").click(clone);
+      $("#oddGreen").click(oddGreen);
+    } // fin de init
+    
+    function reset(){     
+      //supprime tout sauf le contenu d’origine
+      $("p:gt(0)").remove();
+      $("div:not(#content)").remove();
+      //réinitialisation du contenu d’origine
+      $("#content").html("<p>Contenu d’origine</p>");
+    } // fin de reset
+    
+    function addText(){
+      $("p:first").append(" ...contenu ajouté ultérieurement.");
+    } // fin de addContent
+    
+    function wrap(){
+      $("p:gt(0)").wrap("<div></div>");
+    } // fin de wrap
+    
+    function clone(){
+     $("p:first").clone()
+     .insertAfter("p:last")
+     .css("backgroundColor", "lightblue");
+    } // fin de clone
+
+    function oddGreen(){
+      //colore l’arrière-plan des paragraphes impairs en vert
+      $("p:odd").css("backgroundColor", "green")
+      .css("color", "white");
+    } // fin de oddGreen
+    //]]>
+  </script>
+  <title>changeContent.html</title>
+</head>
+<body>
+  <h1>Démo d’ajout de contenu</h1>
+  <form action = "">
+    <fieldset>
+      <button type = "button"
+              id = "reset">
+        reset
+      </button>
+      
+      <button type = "button"
+              id = "addText">
+        add text
+      </button>
+      
+      <button type = "button"
+              id = "clone">
+        clone
+      </button>
+      
+      <button type = "button"
+              id = "wrap">
+        wrap in div
+      </button>
+      
+      <button type = "button"
+              id = "oddGreen">
+        change alternate paragraphs
+      </button>  
+    </fieldset>
+  </form>
+      
+  <div id = "content">
+    <p>
+      Contenu d’origine
+    </p>
+  </div>
+</body>
+</html>
